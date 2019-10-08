@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
+/*var board = {
   cells: [
     {
       row:0,
@@ -23,6 +23,12 @@ var board = {
       hidden:true,
     },
     {
+      row:0,
+      col:3,
+      isMine:false,
+      hidden:true,
+    },
+    {
       row:1,
       col:0,
       isMine:false,
@@ -41,6 +47,12 @@ var board = {
       hidden:true,
     },
     {
+      row:1,
+      col:3,
+      isMine:false,
+      hidden:true,
+    },
+    {
       row: 2,
       col: 0,
       isMine: true,
@@ -56,14 +68,67 @@ var board = {
       row: 2,
       col: 2,
       isMine: true,
-      hidden: true
+      hidden: true,
+    },
+    {
+      row:2,
+      col:3,
+      isMine:false,
+      hidden:true,
+    },
+    {
+      row: 3,
+      col: 0,
+      isMine: false,
+      hidden: true,
+    },
+    {
+      row: 3,
+      col: 1,
+      isMine: false,
+      hidden: true,
+    },
+    {
+      row: 3,
+      col:2,
+      isMine:false,
+      hidden: true,
+    },
+    {
+      row: 3,
+      col:3,
+      isMine: true,
+      hidden:true,
     }
 
 
   ]
   
+}*/
+
+//create board
+var board = {
+  cells:[]
 }
-  
+
+function createBoard (grid) {
+  for (var x = 0; x < grid; x++) { // for rows
+    for(var y = 0; y < grid; y++) { // for cols
+      var random = Math.random() >= 0.6; // make mines random
+      board.cells.push({
+        row:x,
+        col:y,
+        isMine: random,
+        hidden: true
+      })
+    }
+  }
+return board // call board
+}
+
+createBoard(6); // make grid, row: 6, col:6;
+
+
 
 
 function startGame () {
@@ -73,6 +138,15 @@ function startGame () {
   }
   document.addEventListener("click",checkForWin) 
   lib.initBoard()
+}
+
+function hitBoom (){
+  var boom = new Audio("Bomb+1.mp3")
+  for (var i = 0; i < board.cells.length; i++) {
+    if (board.cells[i].isMine && !board.cells[i].hidden){
+      boom.play()
+    }
+  }
 }
 
 // Define this function to look for a win condition:
@@ -113,4 +187,5 @@ function countSurroundingMines (cell) {
   }
   return count;
 }
+
 

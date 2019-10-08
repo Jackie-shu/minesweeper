@@ -8,6 +8,7 @@ body {
   align-items: center;
   justify-content: flex-center;
   flex-direction: column;
+  background:linear-gradient(to left,orange,rgb(252, 242, 188))
 }
 
 #message, #notes {
@@ -58,3 +59,12 @@ div.hidden:hover {
 div.marked, div.marked:hover {
   background: no-repeat center/60% url("images/mark.svg") deepskyblue;
 }
+
+#restart {
+  width: 120px;
+  height: 100px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 15px;
+  background-color: rgb(70, 184, 255);
+}
+
